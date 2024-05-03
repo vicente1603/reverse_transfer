@@ -77,252 +77,22 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final Size screenSize = MediaQuery.of(context).size;
+
     return MaterialApp(
       home: Scaffold(
-        body: Center(
-          child: Container(
-            width: 500,
-            height: 550,
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: Colors.transparent,
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(
-                color: Colors.black,
-                width: 2, //
-              ),
-            ),
-            child: Center(
-              child: Column(
-                children: [
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Selecione um procedimento',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 15),
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Colors.transparent,
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                              color: Colors.black,
-                              width: 2, //
-                            ),
-                          ),
-                          child: DropdownButton<double>(
-                            value: percent,
-                            elevation: 16,
-                            style: const TextStyle(color: Colors.black),
-                            underline: Container(),
-                            isExpanded: true,
-                            icon: const Icon(Icons.arrow_drop_down_rounded),
-                            iconSize: 36,
-                            onChanged: (double? valor) {
-                              setState(() {
-                                percent = valor!;
-                              });
-                            },
-                            items: procedures.keys.map((String key) {
-                              return DropdownMenuItem<double>(
-                                value: procedures[key],
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Expanded(
-                                        child: SizedBox(
-                                          child: Text(
-                                            key,
-                                            style: const TextStyle(
-                                                color: Colors.black),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            }).toList(),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Insira o valor do procedimento',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              'Selecione o nº de parcelas',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 15),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              width: 250,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                color: Colors.transparent,
-                                borderRadius: BorderRadius.circular(10),
-                                border: Border.all(
-                                  color: Colors.black,
-                                  width: 2, //
-                                ),
-                              ),
-                              child: TextFormField(
-                                controller: valueController,
-                                textAlign: TextAlign.center,
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                    hintText: MoneyMaskedTextController(
-                                  initialValue: 0.0,
-                                  leftSymbol: 'R\$ ',
-                                  thousandSeparator: '.',
-                                  decimalSeparator: ',',
-                                  precision: 2,
-                                ).text),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 8,
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                color: Colors.transparent,
-                                borderRadius: BorderRadius.circular(10),
-                                border: Border.all(
-                                  color: Colors.black,
-                                  width: 2, //
-                                ),
-                              ),
-                              width: 150,
-                              height: 50,
-                              child: DropdownButton<int>(
-                                value: quota,
-                                elevation: 16,
-                                style: const TextStyle(color: Colors.black),
-                                underline: Container(),
-                                isExpanded: true,
-                                icon: const Icon(Icons.arrow_drop_down_rounded),
-                                iconSize: 36,
-                                onChanged: (int? valor) {
-                                  setState(() {
-                                    quota = valor!;
-                                  });
-                                },
-                                items: installments.map((int key) {
-                                  return DropdownMenuItem<int>(
-                                    value: key,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(2),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Expanded(
-                                            child: SizedBox(
-                                              child: Center(
-                                                child: Text(
-                                                  key.toString(),
-                                                  style: const TextStyle(
-                                                      color: Colors.black),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                }).toList(),
-                              ),
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 4),
-                      width: double.infinity,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                Colors.blue, // Cor de fundo do botão
-                            foregroundColor:
-                                Colors.white, // Cor do texto do botão
-                          ),
-                          onPressed: () {
-                            calc(percent, valueController.text, quota);
-                          },
-                          child: const Text("CALCULAR"))),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 4),
-                      width: double.infinity,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                Colors.lightBlueAccent, // Cor de fundo do botão
-                            foregroundColor:
-                                Colors.white, // Cor do texto do botão
-                          ),
-                          onPressed: () {
-                            clear();
-                          },
-                          child: const Text("LIMPAR"))),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Container(
-                      height: 200,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 4),
-                      width: double.infinity,
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Center(
+            child: LayoutBuilder(builder: (context, constraints) {
+              return ConstrainedBox(
+                  constraints:
+                      const BoxConstraints(maxHeight: 700, maxWidth: 500),
+                  child: IntrinsicHeight(
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
                       child: Container(
+                        padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
                           color: Colors.transparent,
                           borderRadius: BorderRadius.circular(10),
@@ -331,105 +101,347 @@ class _HomePageState extends State<HomePage> {
                             width: 2, //
                           ),
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                        child: Center(
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Text(
-                                    "Valor do médico: ",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12, vertical: 4),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      'Selecione um procedimento',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    MoneyMaskedTextController(
-                                      initialValue: doctorValue,
-                                      leftSymbol: 'R\$ ',
-                                      thousandSeparator: '.',
-                                      decimalSeparator: ',',
-                                      precision: 2,
-                                    ).text,
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  )
-                                ],
+                                    const SizedBox(height: 15),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.transparent,
+                                        borderRadius: BorderRadius.circular(10),
+                                        border: Border.all(
+                                          color: Colors.black,
+                                          width: 2, //
+                                        ),
+                                      ),
+                                      child: DropdownButton<double>(
+                                        value: percent,
+                                        elevation: 16,
+                                        style: const TextStyle(
+                                            color: Colors.black),
+                                        underline: Container(),
+                                        isExpanded: true,
+                                        icon: const Icon(
+                                            Icons.arrow_drop_down_rounded),
+                                        iconSize: 36,
+                                        onChanged: (double? valor) {
+                                          setState(() {
+                                            percent = valor!;
+                                          });
+                                        },
+                                        items:
+                                            procedures.keys.map((String key) {
+                                          return DropdownMenuItem<double>(
+                                            value: procedures[key],
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(8),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Expanded(
+                                                    child: SizedBox(
+                                                      child: Text(
+                                                        key,
+                                                        style: const TextStyle(
+                                                            color:
+                                                                Colors.black),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          );
+                                        }).toList(),
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              const Text(
+                                'Insira o valor do procedimento',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 15),
+                              Container(
+                                width: 250,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  color: Colors.transparent,
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(
+                                    color: Colors.black,
+                                    width: 2, //
+                                  ),
+                                ),
+                                child: TextFormField(
+                                  controller: valueController,
+                                  textAlign: TextAlign.center,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                      hintText: MoneyMaskedTextController(
+                                    initialValue: 0.0,
+                                    leftSymbol: 'R\$ ',
+                                    thousandSeparator: '.',
+                                    decimalSeparator: ',',
+                                    precision: 2,
+                                  ).text),
+                                ),
+                              ),
+                              const SizedBox(height: 15),
+                              const Text(
+                                'Selecione o nº de parcelas',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 15),
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.transparent,
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(
+                                    color: Colors.black,
+                                    width: 2, //
+                                  ),
+                                ),
+                                width: 150,
+                                height: 50,
+                                child: DropdownButton<int>(
+                                  value: quota,
+                                  elevation: 16,
+                                  style: const TextStyle(color: Colors.black),
+                                  underline: Container(),
+                                  isExpanded: true,
+                                  icon:
+                                      const Icon(Icons.arrow_drop_down_rounded),
+                                  iconSize: 36,
+                                  onChanged: (int? valor) {
+                                    setState(() {
+                                      quota = valor!;
+                                    });
+                                  },
+                                  items: installments.map((int key) {
+                                    return DropdownMenuItem<int>(
+                                      value: key,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(2),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Expanded(
+                                              child: SizedBox(
+                                                child: Center(
+                                                  child: Text(
+                                                    key.toString(),
+                                                    style: const TextStyle(
+                                                        color: Colors.black),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 12, vertical: 4),
+                                  width: double.infinity,
+                                  child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors
+                                            .blue, // Cor de fundo do botão
+                                        foregroundColor: Colors
+                                            .white, // Cor do texto do botão
+                                      ),
+                                      onPressed: () {
+                                        calc(percent, valueController.text,
+                                            quota);
+                                      },
+                                      child: const Text("CALCULAR"))),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 12, vertical: 4),
+                                  width: double.infinity,
+                                  child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors
+                                            .lightBlueAccent, // Cor de fundo do botão
+                                        foregroundColor: Colors
+                                            .white, // Cor do texto do botão
+                                      ),
+                                      onPressed: () {
+                                        clear();
+                                      },
+                                      child: const Text("LIMPAR"))),
                               const SizedBox(
                                 height: 16,
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Text(
-                                    "Valor da clínica: ",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
+                              Container(
+                                  height: 200,
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 12, vertical: 4),
+                                  width: double.infinity,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.transparent,
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                        color: Colors.black,
+                                        width: 2, //
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    MoneyMaskedTextController(
-                                      initialValue: clinicValue,
-                                      leftSymbol: 'R\$ ',
-                                      thousandSeparator: '.',
-                                      decimalSeparator: ',',
-                                      precision: 2,
-                                    ).text,
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              const Text(
+                                                "Valor do médico: ",
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: Text(
+                                                  MoneyMaskedTextController(
+                                                    initialValue: doctorValue,
+                                                    leftSymbol: 'R\$ ',
+                                                    thousandSeparator: '.',
+                                                    decimalSeparator: ',',
+                                                    precision: 2,
+                                                  ).text,
+                                                  style: const TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 16,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              const Text(
+                                                "Valor da clínica: ",
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: Text(
+                                                  MoneyMaskedTextController(
+                                                    initialValue: clinicValue,
+                                                    leftSymbol: 'R\$ ',
+                                                    thousandSeparator: '.',
+                                                    decimalSeparator: ',',
+                                                    precision: 2,
+                                                  ).text,
+                                                  style: const TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 16,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              const Text(
+                                                "Valor de cada parcela da clínica: ",
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: Text(
+                                                  MoneyMaskedTextController(
+                                                    initialValue: valorParcela,
+                                                    leftSymbol: 'R\$ ',
+                                                    thousandSeparator: '.',
+                                                    decimalSeparator: ',',
+                                                    precision: 2,
+                                                  ).text,
+                                                  style: const TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          )
+                                        ],
+                                      ),
                                     ),
-                                  )
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 16,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Text(
-                                    "Valor de cada parcela da clínica: ",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    MoneyMaskedTextController(
-                                      initialValue: valorParcela,
-                                      leftSymbol: 'R\$ ',
-                                      thousandSeparator: '.',
-                                      decimalSeparator: ',',
-                                      precision: 2,
-                                    ).text,
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  )
-                                ],
-                              )
+                                  )),
                             ],
                           ),
                         ),
-                      )),
-                ],
-              ),
-            ),
+                      ),
+                    ),
+                  ));
+            }),
           ),
         ),
       ),
