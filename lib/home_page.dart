@@ -292,6 +292,9 @@ class _HomePageState extends State<HomePage> {
                                             quota);
                                       },
                                       child: const Text("CALCULAR"))),
+                              const SizedBox(
+                                height: 8.0,
+                              ),
                               Container(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 12),
