@@ -278,7 +278,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                               Container(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 12, vertical: 4),
+                                      horizontal: 12),
                                   width: double.infinity,
                                   child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -292,12 +292,9 @@ class _HomePageState extends State<HomePage> {
                                             quota);
                                       },
                                       child: const Text("CALCULAR"))),
-                              const SizedBox(
-                                height: 8,
-                              ),
                               Container(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 12, vertical: 4),
+                                      horizontal: 12),
                                   width: double.infinity,
                                   child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -311,7 +308,7 @@ class _HomePageState extends State<HomePage> {
                                       },
                                       child: const Text("LIMPAR"))),
                               const SizedBox(
-                                height: 16,
+                                height: 8,
                               ),
                               Container(
                                   height: 200,
@@ -328,27 +325,25 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                      padding: const EdgeInsets.all(16.0),
                                       child: Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
                                         children: [
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              const Text(
-                                                "Valor do médico: ",
-                                                style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold,
+                                          Expanded(
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                const Text(
+                                                  "Valor do médico: ",
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
                                                 ),
-                                              ),
-                                              Expanded(
-                                                child: Text(
+                                                Text(
                                                   MoneyMaskedTextController(
                                                     initialValue: doctorValue,
                                                     leftSymbol: 'R\$ ',
@@ -358,30 +353,30 @@ class _HomePageState extends State<HomePage> {
                                                   ).text,
                                                   style: const TextStyle(
                                                     color: Colors.black,
-                                                    fontSize: 16,
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 8,
+                                          ),
+                                          Expanded(
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                const Text(
+                                                  "Valor da clínica: ",
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 14,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
-                                              )
-                                            ],
-                                          ),
-                                          const SizedBox(
-                                            height: 16,
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              const Text(
-                                                "Valor da clínica: ",
-                                                style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                              Expanded(
-                                                child: Text(
+                                                Text(
                                                   MoneyMaskedTextController(
                                                     initialValue: clinicValue,
                                                     leftSymbol: 'R\$ ',
@@ -391,30 +386,30 @@ class _HomePageState extends State<HomePage> {
                                                   ).text,
                                                   style: const TextStyle(
                                                     color: Colors.black,
-                                                    fontSize: 16,
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 8,
+                                          ),
+                                          Expanded(
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                const Text(
+                                                  "Valor de cada parcela da clínica: ",
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 14,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
-                                              )
-                                            ],
-                                          ),
-                                          const SizedBox(
-                                            height: 16,
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              const Text(
-                                                "Valor de cada parcela da clínica: ",
-                                                style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                              Expanded(
-                                                child: Text(
+                                                Text(
                                                   MoneyMaskedTextController(
                                                     initialValue: valorParcela,
                                                     leftSymbol: 'R\$ ',
@@ -424,12 +419,12 @@ class _HomePageState extends State<HomePage> {
                                                   ).text,
                                                   style: const TextStyle(
                                                     color: Colors.black,
-                                                    fontSize: 16,
+                                                    fontSize: 14,
                                                     fontWeight: FontWeight.bold,
                                                   ),
-                                                ),
-                                              )
-                                            ],
+                                                )
+                                              ],
+                                            ),
                                           )
                                         ],
                                       ),
